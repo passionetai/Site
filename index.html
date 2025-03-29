@@ -7,7 +7,21 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- AOS CSS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles (Tailwind Config & Minor Overrides) -->
+    <style>
+        /* Extend Tailwind theme */
         tailwind.config = {
             theme: {
                 extend: {
@@ -27,21 +41,7 @@
                 }
             }
         }
-    </script>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- AOS CSS (Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Custom Styles (Minor Overrides) -->
-    <style>
         /* Custom CSS for specific effects */
         .hero-headline {
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 15px rgba(45, 212, 191, 0.5); /* Neon glow effect */
@@ -64,51 +64,215 @@
         .gradient-frame::before {
             content: '';
             position: absolute;
-            top: -5px;
-            right: -5px;
-            bottom: -5px;
-            left: -5px;
+            inset: -5px; /* Control frame thickness */
             background: linear-gradient(to right, #F472B6, #FBBF24);
-            border-radius: 0.75rem;
+            border-radius: 0.75rem; /* Match image rounding */
             z-index: -1;
-            filter: blur(5px);
+            filter: blur(5px); /* Optional blur for softer frame */
         }
 
         /* Mobile Menu Transition */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
-            transform: translateX(100%);
         }
-        #mobile-menu.open {
-            transform: translateX(0);
+        #mobile-menu.hidden {
+             transform: translateX(100%);
+        }
+         #mobile-menu.visible {
+             transform: translateX(0);
         }
     </style>
 </head>
 <body class="bg-white font-poppins antialiased">
 
-[Previous body content remains the same until the image tag]
-                    <img src="https://via.placeholder.com/600x400/cccccc/969696?text=Team+Working" alt="Team working on laptops" class="w-full h-auto rounded-lg object-cover shadow-lg relative z-10" loading="lazy">
+    <!-- Navigation Bar -->
+    <nav class="bg-black bg-opacity-80 text-white p-4 sticky top-0 z-50 shadow-lg backdrop-blur-sm">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-xl font-bold font-montserrat">Done For You Services</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-vibrant-teal transition-colors">Home</a>
+                <a href="#services" class="hover:text-vibrant-teal transition-colors">Services</a>
+                <a href="#about" class="hover:text-vibrant-teal transition-colors">About</a>
+                <a href="#contact" class="hover:text-vibrant-teal transition-colors">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden focus:outline-none z-50">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
 
-[Previous content remains the same until CTA section]
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-gray-900 bg-opacity-95 backdrop-blur-sm text-white p-8 space-y-6 z-40 transform translate-x-full md:hidden">
+         <button id="close-menu-btn" class="absolute top-5 right-5 focus:outline-none">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <a href="#home" class="block hover:text-vibrant-teal transition-colors mobile-menu-link">Home</a>
+        <a href="#services" class="block hover:text-vibrant-teal transition-colors mobile-menu-link">Services</a>
+        <a href="#about" class="block hover:text-vibrant-teal transition-colors mobile-menu-link">About</a>
+        <a href="#contact" class="block hover:text-vibrant-teal transition-colors mobile-menu-link">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="h-screen flex items-center justify-center text-center text-white relative overflow-hidden bg-gradient-to-br from-deep-blue to-vibrant-teal">
+        <!-- Particle Effect Container -->
+        <div id="particles-js"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content max-w-4xl mx-auto px-4" data-aos="fade-in" data-aos-delay="200">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-poppins mb-4 hero-headline">
+                Your All-in-One Tech Solution – Done For You!
+            </h1>
+            <p class="text-lg md:text-xl mb-8 font-light">
+                From Web3 to Repairs, We Handle It All.
+            </p>
+            <a href="#services" class="inline-block py-3 px-8 bg-gradient-to-r from-accent-pink to-accent-yellow rounded-full text-white font-semibold text-lg hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-yellow">
+                Explore Our Services
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-deep-blue" data-aos="fade-up">Our Services</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-l-4 border-transparent hover:border-vibrant-teal transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl mb-4 text-deep-blue"><i class="fas fa-cogs"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Software Installation</h3>
+                    <p class="text-gray-600">Hassle-free setup and configuration of your essential software.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-l-4 border-transparent hover:border-vibrant-teal transition-all duration-300" data-aos="fade-up" data-aos-delay="150">
+                    <div class="text-4xl mb-4 text-deep-blue"><i class="fas fa-link"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Web3/Blockchain & DApp Dev</h3>
+                    <p class="text-gray-600">Build decentralized applications and leverage blockchain technology.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-l-4 border-transparent hover:border-vibrant-teal transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl mb-4 text-deep-blue"><i class="fas fa-shopping-cart"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">E-Commerce & E-Learning</h3>
+                    <p class="text-gray-600">Develop powerful online stores and engaging learning platforms.</p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-l-4 border-transparent hover:border-vibrant-teal transition-all duration-300" data-aos="fade-up" data-aos-delay="250">
+                    <div class="text-4xl mb-4 text-deep-blue"><i class="fas fa-robot"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">AI Chatbot Development</h3>
+                    <p class="text-gray-600">Build intelligent chatbots for your business with cutting-edge AI.</p>
+                </div>
+                <!-- Service Card 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-l-4 border-transparent hover:border-vibrant-teal transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl mb-4 text-deep-blue"><i class="fas fa-code"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Software Development</h3>
+                    <p class="text-gray-600">Custom software solutions tailored precisely to your business needs.</p>
+                </div>
+                <!-- Service Card 6 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-l-4 border-transparent hover:border-vibrant-teal transition-all duration-300" data-aos="fade-up" data-aos-delay="350">
+                    <div class="text-4xl mb-4 text-deep-blue"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Networking & PC Purchase</h3>
+                    <p class="text-gray-600">Expert advice and setup for networks and new computer systems.</p>
+                </div>
+                 <!-- Service Card 7 -->
+                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-l-4 border-transparent hover:border-vibrant-teal transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl mb-4 text-deep-blue"><i class="fas fa-tools"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Phone/PC/Laptop Repair</h3>
+                    <p class="text-gray-600">Fast and reliable repair services for all your essential devices.</p>
+                </div>
+                 <!-- Service Card 8 -->
+                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-l-4 border-transparent hover:border-vibrant-teal transition-all duration-300" data-aos="fade-up" data-aos-delay="450">
+                    <div class="text-4xl mb-4 text-deep-blue"><i class="fas fa-database"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Data Recovery</h3>
+                    <p class="text-gray-600">Recover lost data from failed hard drives and other storage media.</p>
+                </div>
+                 <!-- Service Card 9 -->
+                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-l-4 border-transparent hover:border-vibrant-teal transition-all duration-300" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-4xl mb-4 text-deep-blue"><i class="fas fa-paint-brush"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Graphics Design</h3>
+                    <p class="text-gray-600">Stunning visuals, logos, and branding materials for your company.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-deep-blue">Who We Are</h2>
+                <p class="text-gray-700 leading-relaxed text-lg">
+                    Done For You Services is your trusted partner for all things tech. Our expert team is dedicated to providing comprehensive solutions, from cutting-edge software development and Web3 integration to essential IT support like device repairs and data recovery. We believe in simplifying technology, delivering top-notch, reliable services tailored specifically to meet your individual or business needs. Let us handle the complexities, so you can focus on what matters most.
+                </p>
+            </div>
+            <div class="relative" data-aos="fade-left" data-aos-delay="100">
+                 <!-- Gradient Frame Wrapper -->
+                 <div class="relative p-1 rounded-lg gradient-frame">
+                    <img src="https://via.placeholder.com/600x400/cccccc/969696?text=Team+Working" alt="Team working on laptops" class="w-full h-auto rounded-lg object-cover shadow-lg relative z-10">
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 md:py-20 text-center text-white bg-gradient-to-r from-accent-yellow to-accent-pink">
+        <div class="container mx-auto px-4" data-aos="zoom-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Tech Experience?</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">Don't let tech challenges slow you down. Get expert help today!</p>
             <a href="#contact" class="inline-block py-3 px-8 bg-white text-accent-pink rounded-full font-semibold text-lg hover:bg-gray-100 hover:shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-accent-pink focus:ring-white">
                 Get a Free Quote
             </a>
-            <a href="#contact" class="inline-block py-3 px-8 bg-gradient-to-r from-deep-blue to-vibrant-teal hover:from-vibrant-teal hover:to-deep-blue rounded-full text-white font-semibold text-lg transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-accent-pink focus:ring-white">
+            <!-- Example of gradient direction change on hover (applied via class for simplicity) -->
+            <!-- <a href="#contact" class="inline-block py-3 px-8 bg-gradient-to-r from-deep-blue to-vibrant-teal hover:from-vibrant-teal hover:to-deep-blue rounded-full text-white font-semibold text-lg transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-accent-pink focus:ring-white">
                 Get a Free Quote
-            </a>
+            </a> -->
+        </div>
+    </section>
 
-[Previous content remains the same until scripts section]
+    <!-- Footer -->
+    <footer id="contact" class="bg-deep-blue text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <!-- Column 1: Logo & Tagline -->
+            <div>
+                <a href="#home" class="text-2xl font-bold font-montserrat mb-2 inline-block">Done For You Services</a>
+                <p class="text-gray-300 text-sm">Simplifying Your Tech World.</p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="hover:text-vibrant-teal transition-colors text-gray-300">Home</a></li>
+                    <li><a href="#services" class="hover:text-vibrant-teal transition-colors text-gray-300">Services</a></li>
+                    <li><a href="#about" class="hover:text-vibrant-teal transition-colors text-gray-300">About</a></li>
+                    <li><a href="#contact" class="hover:text-vibrant-teal transition-colors text-gray-300">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Contact Info & Socials -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+                <ul class="space-y-2 text-gray-300">
+                    <li><i class="fas fa-envelope mr-2 text-vibrant-teal"></i> info@doneforyouservices.com</li>
+                    <li><i class="fas fa-phone mr-2 text-vibrant-teal"></i> +1-555-123-4567</li>
+                </ul>
+                <div class="mt-6 space-x-4">
+                    <a href="#" aria-label="Twitter" class="text-2xl text-gray-300 hover:text-vibrant-teal transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn" class="text-2xl text-gray-300 hover:text-vibrant-teal transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub" class="text-2xl text-gray-300 hover:text-vibrant-teal transition-colors"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-gray-400 mt-10 pt-6 border-t border-gray-700 text-sm">
+            © 2024 Done For You Services. All Rights Reserved.
+        </div>
+    </footer>
+
     <!-- Scripts -->
     <!-- particles.js CDN -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- AOS JS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Custom JS -->
     <script src="script.js"></script>
-    <!-- AOS JS (Animate On Scroll) - Load last -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init();
-        });
-    </script>
 </body>
 </html>
