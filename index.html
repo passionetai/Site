@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Done For You Services - Your All-in-One Tech Solution</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-blue': '#1E3A8A',
+                        'vibrant-teal': '#2DD4BF',
+                        'accent-pink': '#F472B6',
+                        'accent-yellow': '#FBBF24',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-glow': '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #2DD4BF, 0 0 20px #2DD4BF',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- AOS CSS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles (Minor Overrides) -->
+    <style>
+        /* Custom CSS for specific effects */
+        .hero-headline {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 15px rgba(45, 212, 191, 0.5); /* Neon glow effect */
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Behind hero content */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Above particles */
+        }
+
+        .gradient-frame::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            bottom: -5px;
+            left: -5px;
+            background: linear-gradient(to right, #F472B6, #FBBF24);
+            border-radius: 0.75rem;
+            z-index: -1;
+            filter: blur(5px);
+        }
+
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-white font-poppins antialiased">
+
+[Previous body content remains the same until the image tag]
+                    <img src="https://via.placeholder.com/600x400/cccccc/969696?text=Team+Working" alt="Team working on laptops" class="w-full h-auto rounded-lg object-cover shadow-lg relative z-10" loading="lazy">
+
+[Previous content remains the same until CTA section]
+            <a href="#contact" class="inline-block py-3 px-8 bg-white text-accent-pink rounded-full font-semibold text-lg hover:bg-gray-100 hover:shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-accent-pink focus:ring-white">
+                Get a Free Quote
+            </a>
+            <a href="#contact" class="inline-block py-3 px-8 bg-gradient-to-r from-deep-blue to-vibrant-teal hover:from-vibrant-teal hover:to-deep-blue rounded-full text-white font-semibold text-lg transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-accent-pink focus:ring-white">
+                Get a Free Quote
+            </a>
+
+[Previous content remains the same until scripts section]
+    <!-- Scripts -->
+    <!-- particles.js CDN -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+    <!-- AOS JS (Animate On Scroll) - Load last -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init();
+        });
+    </script>
+</body>
+</html>
